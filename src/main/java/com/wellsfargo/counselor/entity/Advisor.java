@@ -1,17 +1,16 @@
 package com.wellsfargo.counselor.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Advisor {
 
     @Id
     @GeneratedValue()
-    private long advisorId;
+    private Long advisorId;
 
     @Column(nullable = false)
     private String firstName;
@@ -28,16 +27,31 @@ public class Advisor {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Column(name = "createdAt", updatable = false, nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "deletedAt", nullable = true)
+    private LocalDateTime deletedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
     protected Advisor() {
 
     }
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email) {
+    public Advisor(String firstName, String lastName, String address, String phone, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.password = password;
     }
 
     public Long getAdvisorId() {
