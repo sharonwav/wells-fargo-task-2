@@ -1,2 +1,3 @@
-# Task 2 Starter Repo
-Contains Everything you need to get started on task 2 of Forage's Wells Fargo software engineering program
+Using IntelliJ IDEA to implement the drafted ERD for managing financial portfolio
+
+
